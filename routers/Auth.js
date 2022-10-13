@@ -5,7 +5,9 @@ const router = new Router();
 router.post('/auth', async (req, res) => {
     try {
         const { email, password } = req.body;
+        console.log(email, password)
         const user = await User.findOne({ email: email }).exec();
+        console.log(user)
         if (user && password === user.password) {
             const update = await User.updateOne({ email: email }, { isAuth: true });
             if (update.matchedCount) user.isAuth = true;
@@ -17,7 +19,7 @@ router.post('/auth', async (req, res) => {
     } catch (error) {
         res.statusCode = 406;
         res.statusMessage = error.message;
-        res.json({ message: { email, password } })
+        res.json({ message: error.message });
     }
 })
 
