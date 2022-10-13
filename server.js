@@ -4,7 +4,7 @@ import router from './routers/Auth.js';
 import Aircraftrouter from './routers/Aircraft.js';
 import cors from 'cors';
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 const URI = "mongodb+srv://user1:user1@cluster0.lswt8ul.mongodb.net/new-way?retryWrites=true&w=majority"
 
 const app = express();
