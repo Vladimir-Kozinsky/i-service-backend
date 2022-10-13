@@ -15,7 +15,7 @@ router.post('/auth', async (req, res) => {
             throw new Error("Incorrect e-mail or password!");
         }
     } catch (error) {
-        res.statusCode = 403;
+        res.statusCode = 406;
         res.statusMessage = error.message;
         res.json({ message: error.message })
     }
