@@ -5,7 +5,8 @@ const router = new Router();
 router.post('/auth', async (req, res) => {
     try {
         const { email, password } = req.body;
-        const user = await User.findOne({ email: email });
+        //const user = await User.findOne({ email: email });
+        const user = await User.find().exec();
         console.log(user);
         if (user && password === user.password) {
             const update = await User.updateOne({ email: email }, { isAuth: true });
