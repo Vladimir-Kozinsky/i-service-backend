@@ -1,14 +1,13 @@
 import { Router } from "express";
+import User from "../models/user.js";
 
 const router = new Router();
 
 router.post('/auth', async (req, res) => {
     try {
         const { email, password } = req.body;
-        //const user = await User.findOne({ email: email });
-        const user = await User.find().exec();
-        console.log(user);
-        if (user && password === user.password) {
+        const user = await User.findOne({ email: email }).exec();
+          if (user && password === user.password) {
             const update = await User.updateOne({ email: email }, { isAuth: true });
             if (update.matchedCount) user.isAuth = true;
             res.statusMessage = "User successfully authorised.";
