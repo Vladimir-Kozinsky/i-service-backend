@@ -17,7 +17,7 @@ router.post('/auth', async (req, res) => {
     } catch (error) {
         res.statusCode = 406;
         res.statusMessage = error.message;
-        res.json({ message: error.message })
+        res.json({ message: { email, password } })
     }
 })
 
